@@ -1,5 +1,5 @@
 <template>
-    <div class="merch-container d-flex align-items-center justify-content-center py-5 px-4">
+    <div class="merch-container d-flex align-items-center justify-content-center py-5 px-2">
         <div class="img-container d-flex align-items-center justify-content-center">
             <img class="img-fluid h-100" :src="item.img" :alt="item.name">
         </div>

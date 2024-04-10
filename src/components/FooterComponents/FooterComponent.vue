@@ -1,17 +1,26 @@
 <template>
 <footer>
     <div id="merchandising" >
-    <div class="container d-flex justify-content-center">
-            <MerchComponent v-for="(item, index) in merchandaisingItems" :key="index" :item="item"/>
+    <div class="container d-flex justify-content-around">
+        <div class="row">
+            <MerchComponent class="col-2" v-for="(item, index) in merchandaisingItems" :key="index" :item="item"/>
+            </div>
+            
         </div>
     </div>
     <div id="menu">
         <div class="container d-flex flex-column flex-wrap align-content-start">
-            <MenuComponent v-for="(menu, index) in menues" :key="index" :menu="menu"/>
+                <MenuComponent  v-for="(menu, index) in menues" :key="index" :menu="menu"/>
         </div>
     </div>
-    <div>
-        contacts
+    <div id="contacts">
+       <div class="container py-4 d-flex justify-content-between align-items-center ">
+                <ButtonComponent /> 
+                <div class="d-flex align-items-center justify-content-center gap-3">
+                    <h4 class="mb-0">Follow us</h4>               
+                    <ContactComponent v-for="(contact, index) in contacts" :key="index" :contact="contact"/>
+                </div>
+       </div>
     </div>
 </footer>
 </template>
@@ -19,11 +28,15 @@
 <script>
 import MerchComponent from './MerchComponent.vue';
 import MenuComponent from './MenuComponent.vue';
+import ButtonComponent from './ButtonComponent.vue';
+import ContactComponent from './ContactComponent.vue';
     export default {
         name: 'FooterComponent',
         components: {
             MerchComponent,
-            MenuComponent
+            MenuComponent,
+            ButtonComponent,
+            ContactComponent,
         },
         data() {
             return {
@@ -171,6 +184,33 @@ import MenuComponent from './MenuComponent.vue';
                             }
                         ]
                     }
+                ],
+                contacts: [
+                    {
+                        name:'facebook',
+                        img: '/images/footer-facebook.png',
+                        url: '#'
+                    },
+                    {
+                        name:'Twitter',
+                        img: '/images/footer-twitter.png',
+                        url: '#'
+                    },
+                    {
+                        name:'Youtube',
+                        img: '/images/footer-youtube.png',
+                        url: '#'
+                    },
+                    {
+                        name:'Pinterest',
+                        img: '/images/footer-pinterest.png',
+                        url: '#'
+                    },
+                    {
+                        name:'Periscope',
+                        img: '/images/footer-periscope.png',
+                        url: '#'
+                    }
                 ]
             }
         }
@@ -179,6 +219,7 @@ import MenuComponent from './MenuComponent.vue';
 
 <style lang="scss" scoped>
 @use '../../assets/styles/partials/variables' as *;
+
 
  #merchandising {
     background-color: $merchant-background;
@@ -197,6 +238,14 @@ import MenuComponent from './MenuComponent.vue';
         background-repeat: no-repeat;
         height: 500px;
         padding: 30px 0;
+    }
+ }
+
+ #contacts {
+    background-color: $contact-background;
+
+    h4 {
+        color: $navColor;
     }
  }
 

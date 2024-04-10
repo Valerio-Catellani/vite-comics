@@ -18,6 +18,11 @@ $fa-font-path: '../fonts/webfonts';
 
 
 body{
-    font-family: $font-main
+    font-family: $font-main;
+    height: 100vh;
+}
+
+#app{
+height: 100%;
 }
 

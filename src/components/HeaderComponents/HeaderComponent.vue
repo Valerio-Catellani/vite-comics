@@ -7,13 +7,18 @@
             <ul>
                <li v-for="(item, index) in navbar" :key="index"><a :href="item.url">{{ textUppercase(item.name)}}</a></li> 
             </ul>
+                <KebabMenu :menu="navbar"/>
         </div>
     </header>
 </template>
 
 <script>
+import KebabMenu from './KebabMenu.vue';
 export default {
         name: 'HeaderComponent',
+        components: {
+            KebabMenu
+        },
         data() {
             return {
                 navbar: [
@@ -69,22 +74,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use '../assets/styles/partials/variables' as *;
+@use '../../assets/styles/partials/variables' as *;
 
 header {
     height: 80px;
     background-color: $nav-background;
     flex-wrap: nowrap;
 
+
     #img-container {
         min-width: 100px;
     }
+
 
     ul {
         display: flex;
         list-style: none;
         margin-bottom: 0;
         height: 100%;
+
+        @media screen and (max-width: 1200px) {
+            display: none;   
+         }
+
     
         li {
             margin: 0 1rem;

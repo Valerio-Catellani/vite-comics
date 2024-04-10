@@ -32,6 +32,10 @@ ul {
             text-decoration: none;
             font-family: $font-menu;
             font-size: 0.8rem;
+
+            &:hover{
+                text-decoration: underline;
+            }
         }
     }
 }
