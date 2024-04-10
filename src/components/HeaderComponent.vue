@@ -1,7 +1,7 @@
 <template>
     <header >
         <div class="container d-flex justify-content-between h-100">
-            <div class="h-100 p-2">
+            <div id="img-container" class="h-100 p-2">
               <img class="img-fluid h-100" src="/images/dc-logo.png">  
             </div>
             <ul>
@@ -74,13 +74,17 @@ export default {
 header {
     height: 80px;
     background-color: $nav-background;
+    flex-wrap: nowrap;
+
+    #img-container {
+        min-width: 100px;
+    }
 
     ul {
         display: flex;
         list-style: none;
         margin-bottom: 0;
         height: 100%;
-        align-items: flex-end; // Modifica qui
     
         li {
             margin: 0 1rem;
