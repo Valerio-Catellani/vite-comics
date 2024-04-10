@@ -3,7 +3,7 @@
         <div class="img-container d-flex align-items-center justify-content-center">
             <img class="img-fluid h-100" :src="item.img" :alt="item.name">
         </div>
-        <h5>{{ item.name }}</h5>
+        <h5>{{ textUppercase(item.name) }}</h5>
     </div>
 </template>
 
@@ -11,6 +11,11 @@
     export default {
         name: 'MerchComponent',
         props: ['item'],
+        methods: {
+            textUppercase(text) {
+                 return text.toUpperCase();
+            }
+        }
     }
 </script>
 
@@ -32,6 +37,7 @@
         font-size: 1rem;
         padding-left: 10px;
         margin-bottom: 0;
+        cursor: pointer;
     }
 }
 

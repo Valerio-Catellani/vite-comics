@@ -120,9 +120,7 @@ header {
             a {
                 margin: 0;
                 text-decoration: none;
-                font-size: 12px;
                 color: black;
-                font-weight: bold;
             }
         }
     }
