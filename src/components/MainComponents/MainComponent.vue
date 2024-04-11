@@ -3,9 +3,10 @@
         <JumbotronComponent :AbUrlImg="'/images/jumbotron.jpg'" />
         <div class="container">
             <MainButtonComponent id="current-series" :text="'CURRENT SERIES'" />
-            <CardHighlightedComponent v-if="ComicsHighlighted" :style="{ height: HighLightDimension + 'px' }"
+            <CardHighlightedComponent v-if="ComicsHighlighted" :style="{ height: HighLightDimension.initial + 'px' }"
                 :title="ComicsHighlighted.series" :img="ComicsHighlighted.thumb" :price="ComicsHighlighted.price"
-                :disponibiliy="ComicsHighlighted.available" :series="ComicsHighlighted.type" />
+                :disponibiliy="ComicsHighlighted.available" :series="ComicsHighlighted.type"
+                @close-highlight="closeAnimation" />
             <div class="row gap-3 py-1 justify-content-center ">
                 <CardComponent class="col-5 col-md-6 col-lg-3 col-xl-2 mb-4" v-for="(item, index) in ComicsCopy"
                     :key="index" :img="item.thumb" :title="item.series" @more-info="gestisci" />
@@ -27,7 +28,10 @@ export default {
         return {
             ComicsCopy: Comics,
             ComicsHighlighted: null,
-            HighLightDimension: 450,
+            HighLightDimension: {
+                initial: 0,
+                final: 450
+            }
         }
     },
     components: {
@@ -45,16 +49,36 @@ export default {
                 return (element.series === item.title && element.thumb === item.img)
             })
             this.ComicsHighlighted = HighlightedElement[0];
-            let startingDimension = 0;
-            // while (startingDimension <= this.HighLightDimension) {
-            //     setTimeout(() => {
-            //         startingDimension += 50
-            //     }, 1000)
-            // }
+            this.openAnimation();
+        },
+        async openAnimation() {
+            console.log('open');
+            try {
+                if (this.HighLightDimension.initial < this.HighLightDimension.final) {
+                    while (this.HighLightDimension.initial < this.HighLightDimension.final) {
+                        await new Promise(resolve => setTimeout(resolve, 5)); // 
+                        this.HighLightDimension.initial += 10;
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async closeAnimation() {
+            console.log('close');
+            try {
+                if (this.HighLightDimension.initial >= this.HighLightDimension.final) {
+                    while (this.HighLightDimension.initial > 0) {
+                        await new Promise(resolve => setTimeout(resolve, 5));
+                        this.HighLightDimension.initial -= 10;
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
 
-
-        }
-    }
+    },
 }
 </script>
 

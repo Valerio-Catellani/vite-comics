@@ -16,6 +16,7 @@
             <div class="d-flex gap-3 justify-content-center my-3">
                 <a href="#" class="card-link" @click.prevent>Buy it Now</a>
                 <a href="#" class="card-link" @click.prevent>Add to Cart </a>
+                <a href="#" class="card-link text-danger" @click.prevent="$emit('close-highlight')">Close </a>
             </div>
         </div>
     </div>
@@ -34,7 +35,7 @@ export default {
             required: true
         },
         price: {
-            type: Number,
+            type: String,
             default: 'No information'
         },
         disponibiliy: {
@@ -76,6 +77,10 @@ export default {
 
     .card-text {
         max-height: 150px;
+    }
+
+    a {
+        text-decoration: none;
     }
 }
 </style>
