@@ -1,5 +1,5 @@
 <template>
-    <div class="highlight-card d-flex justify-content-center py-1 mb-5">
+    <div class="highlight-card d-flex justify-content-center pb-1 pt-5 mb-5">
         <div class="img-container">
             <img :src="img" class="img-fluid w-100" :alt="title">
         </div>

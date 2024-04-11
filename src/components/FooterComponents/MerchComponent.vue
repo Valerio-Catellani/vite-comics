@@ -8,15 +8,15 @@
 </template>
 
 <script>
-    export default {
-        name: 'MerchComponent',
-        props: ['item'],
-        methods: {
-            textUppercase(text) {
-                 return text.toUpperCase();
-            }
+export default {
+    name: 'MerchComponent',
+    props: ['item'],
+    methods: {
+        textUppercase(text) {
+            return text.toUpperCase();
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -26,7 +26,7 @@
     color: $text-merch;
     min-width: 200px;
 
-    .img-container{
+    .img-container {
         width: 60px;
         height: 60px;
         min-width: 60px;
@@ -38,7 +38,10 @@
         padding-left: 10px;
         margin-bottom: 0;
         cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
-
 </style>

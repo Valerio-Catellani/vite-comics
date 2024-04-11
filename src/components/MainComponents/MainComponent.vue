@@ -3,8 +3,9 @@
         <JumbotronComponent :AbUrlImg="'/images/jumbotron.jpg'" />
         <div class="container">
             <MainButtonComponent id="current-series" :text="'CURRENT SERIES'" />
-            <CardHighlightedComponent v-if="ComicsHighlighted" :style="{ height: HighLightDimension.initial + 'px' }"
-                :title="ComicsHighlighted.series" :img="ComicsHighlighted.thumb" :price="ComicsHighlighted.price"
+            <CardHighlightedComponent ref="highlightedCard" v-if="ComicsHighlighted"
+                :style="{ height: HighLightDimension.initial + 'px' }" :title="ComicsHighlighted.series"
+                :img="ComicsHighlighted.thumb" :price="ComicsHighlighted.price"
                 :disponibiliy="ComicsHighlighted.available" :series="ComicsHighlighted.type"
                 @close-highlight="closeAnimation" />
             <div class="row gap-3 py-1 justify-content-center ">
@@ -30,7 +31,7 @@ export default {
             ComicsHighlighted: null,
             HighLightDimension: {
                 initial: 0,
-                final: 450
+                final: 500
             }
         }
     },
@@ -47,12 +48,19 @@ export default {
         gestisci(item) {
             const HighlightedElement = this.ComicsCopy.filter(element => {
                 return (element.series === item.title && element.thumb === item.img)
-            })
-            this.ComicsHighlighted = HighlightedElement[0];
-            this.openAnimation();
+            });
+            if (this.ComicsHighlighted !== HighlightedElement[0]) {
+                this.ComicsHighlighted = HighlightedElement[0];
+                this.openAnimation();
+                // Utilizza this.$nextTick() per eseguire il codice dopo che Vue ha completato le modifiche al DOM
+                this.$nextTick(() => {
+                    this.$refs.highlightedCard.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            } else {
+                this.closeAnimation();
+            }
         },
         async openAnimation() {
-            console.log('open');
             try {
                 if (this.HighLightDimension.initial < this.HighLightDimension.final) {
                     while (this.HighLightDimension.initial < this.HighLightDimension.final) {
@@ -65,13 +73,13 @@ export default {
             }
         },
         async closeAnimation() {
-            console.log('close');
             try {
                 if (this.HighLightDimension.initial >= this.HighLightDimension.final) {
                     while (this.HighLightDimension.initial > 0) {
                         await new Promise(resolve => setTimeout(resolve, 5));
                         this.HighLightDimension.initial -= 10;
                     }
+                    this.ComicsHighlighted = null;
                 }
             } catch (error) {
                 console.log(error);
