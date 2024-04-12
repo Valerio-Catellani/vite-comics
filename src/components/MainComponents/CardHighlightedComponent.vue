@@ -45,7 +45,6 @@ export default {
         series: {
             type: String,
             default: 'DC Comics'
-
         }
     },
     data() {

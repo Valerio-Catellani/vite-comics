@@ -1,8 +1,8 @@
 <template>
     <footer>
         <div id="merchandising">
-            <div class="container d-flex justify-content-around">
-                <div class="row">
+            <div class="container">
+                <div class="row justify-content-center">
                     <MerchComponent class="col-2" v-for="(item, index) in merchandaisingItems" :key="index"
                         :item="item" />
                 </div>
